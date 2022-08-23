@@ -1,4 +1,8 @@
+from xmlrpc.client import Boolean
+from flask import Flask, render_template, request 
+from sqlalchemy import create_engine, text
 from datetime import datetime
+from sqlalchemy.orm import sessionmaker
 
 def valida_cadastro(email,cpf,nome,sobrenome,telefone,nascimento) -> bool:
     flag = True
@@ -30,3 +34,10 @@ print(valida_cadastro('joao@gmail.com','32268330818','joao vitor','dias ferraz',
 
 for n in range(6):
     print(n)
+
+db_url = "mssql+pymssql://sa:joao1234@localhost:1433/dbMaryflix"
+engine = create_engine(db_url, pool_size=5, pool_recycle=3600,echo=True)
+conn = engine.connect()
+lista_cpfs = [cpf[0] for cpf in conn.execute('select cpf_usuario from dados_pessoais').fetchall()]
+conn.close()
+print(lista_cpfs)

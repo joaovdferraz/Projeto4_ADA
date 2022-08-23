@@ -15,6 +15,7 @@ def valida_cadastro(email,cpf,nome,sobrenome,telefone,nascimento,lista_cpfs) -> 
         if not (letra.isalpha() or letra == " "):
             flag = False
     for letra in sobrenome:
+        if not (letra.isalpha() or letra == " "):
             flag = False
     if len(nascimento.split('-')) != 3:
         flag=False
