@@ -1,0 +1,30 @@
+   
+th:tr{
+    color: blue;
+
+}
+tr:nth-of-type(2n){
+    border: 1px solid black;
+    background-color: rgba(150, 150, 150, 0.5);
+
+}
+
+td{          
+    border: 1px solid black;
+    text-align: center; 
+}
+
+
+div.container {
+    text-align: center;
+    }
+  
+ul.myUL {
+    display: inline-block;
+    text-align: left;
+    }
+
+.centro {
+    display: inline-block;
+    text-align: left;
+    }

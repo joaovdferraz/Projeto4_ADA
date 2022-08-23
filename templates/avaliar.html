@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Dados inválidos</title>
+  </head>
+  
+  {% extends "template.html" %}
+  {% block content %}
+  <body>
+    <form action="/form_avalia" method="POST">
+    <div class="container">
+    <div class="centro">    
+    <div class="form-group">
+    <label for="exampleInputEmail1">E-mail</label><br>
+    <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Email" name="email"><br><br>
+    </div>
+    <label for="1">Escolha o filme que deseja avaliar:</label><br>
+    <select name="filme" id="filme">
+        {%for titulo in lista_filmes%}
+            <option text="{{titulo[0]}}">{{titulo[0]}}</option>
+        {%endfor%}
+    </select><br><br>
+    <label for="1">Escolha a nota que deseja:</label><br>
+    <select name="nota" id="23">
+        {%for n in range(6)%}
+            <option value="{{n}}">{{n}}</option>
+        {%endfor%}
+    </select><br><br>   
+    <button type="submit">Submit </button>   
+    </div>
+    </div>   
+    {% endblock %}
+  </body>
+</form>
+  
+</html>

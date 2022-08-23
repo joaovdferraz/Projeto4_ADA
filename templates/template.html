@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Módulo 5 - Dados de um serviço de streaming</title>
+    
+    <link rel="stylesheet" href="{{ url_for('static',    filename='css/template.css') }}">
+    
+    
+</head>
+  <body>
+    <header>
+      <div class="container">
+        <p style="text-align:center"><img src="/static/sonserina.png" alt="f" style="width:128px;height:128px;"></p>        
+        <strong><nav>
+          <ul class="myUL">
+            <li><a href="{{ url_for('home') }}">Home</a></li>
+            <li><a href="{{ url_for('avaliacoes') }}">Avaliações</a></li>
+            <li><a href="{{ url_for('assinantes') }}">Assinantes por plano</a></li>
+            <li><a href="{{ url_for('visualizacoes') }}">Visualizações</a></li>
+            <li><a href="{{ url_for('cadastro') }}">Cadastro</a></li>
+            <li><a href="{{ url_for('avaliar') }}">Avaliar Filme</a></li>
+          </ul>
+        </nav></strong>
+      </div>
+    </header>
+    
+{% block content %}
+{% endblock %}
+
+ </body>
+</html>
