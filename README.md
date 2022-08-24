@@ -5,6 +5,7 @@ Executar  o arquivo CreateDB.sql para criar um banco de dados para teste.<br>
 No cmd executar os comandos na pasta do projeto para criar um ambiente virtual:<br>
 py -3 -m venv .venv <br>
 .venv\scripts\activate  <br>
+Instalar as bibliotecas necessárias no ambiente virtual: <br>
 python -m pip install --upgrade pip <br>
 python -m pip install flask <br>
 pip install -U Flask-SQLAlchemy <br>
