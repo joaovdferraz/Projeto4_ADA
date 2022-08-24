@@ -54,7 +54,7 @@ def avaliacoes():
 @app.route("/assinantes")
 def assinantes():
     conn = engine.connect()
-    sql_text = text("SELECT plano_nome, COUNT(CASE WHEN contratos.status_contrato = 1 THEN 1 END) AS assinantes_por_plano, ROUND(SUM(valor_pago),2)"
+    sql_text = text("SELECT plano_nome, COUNT(distinct(contratos.contrato_id)) AS assinantes_por_plano, ROUND(SUM(valor_pago),2)"
     " AS receita_total_por_plano FROM contratos INNER JOIN planos ON contratos.plano_id = planos.plano_id right join pagamentos"
     " on contratos.contrato_id = pagamentos.contrato_id GROUP BY contratos.plano_id, planos.plano_nome")
     lista_assinantes = conn.execute(sql_text).fetchall()    
