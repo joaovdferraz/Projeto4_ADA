@@ -1,4 +1,3 @@
-from xmlrpc.client import Boolean
 from flask import Flask, render_template, request 
 from sqlalchemy import create_engine, text
 from datetime import datetime
@@ -28,11 +27,7 @@ def valida_cadastro(email,cpf,nome,sobrenome,telefone,nascimento,lista_cpfs) -> 
                 flag = False
         else:
             flag = False
-    return flag
-    
-    
-    
-    
+    return flag    
 
 
 app = Flask(__name__)
@@ -40,38 +35,12 @@ db_url = "mssql+pymssql://sa:joao1234@localhost:1433/dbMaryflix"
 # A cadeia de conexao é formada por dialect[+driver]://user:password@host:port/dbname
 engine = create_engine(db_url, pool_size=5, pool_recycle=3600,echo=True)
 Session = sessionmaker(bind=engine)
-
 session = Session()
 
-
-conn = engine.connect()
-
-sql_text = text("SELECT * FROM dbo.usuarios")
-result = conn.execute(sql_text)
-print(f"Number of rows = {result.rowcount}.")
-
-for row in result:
-    print(row)
-conn.close()
 
 @app.route("/")
 def home():
     return render_template("home.html")
-
-
-@app.route("/hello/<name>")
-def hello_there(name):
-    now = datetime.now()
-    formatted_now = now.strftime("%A, %d %B, %Y at %X")
-    conn = engine.connect()
-    sql_text = text("SELECT * FROM dbo.usuarios")
-    result = conn.execute(sql_text)
-
-    content = ''
-    for row in result:
-        content = content + str(row)
-    conn.close()
-    return content
 
 @app.route("/avaliacoes")
 def avaliacoes():
@@ -85,8 +54,8 @@ def avaliacoes():
 @app.route("/assinantes")
 def assinantes():
     conn = engine.connect()
-    sql_text = text("SELECT plano_nome, COUNT(contratos.plano_id) AS assinantes_por_plano, SUM(valor_pago)"
-    " AS receita_total_por_plano FROM contratos INNER JOIN planos ON contratos.plano_id = planos.plano_id inner join pagamentos"
+    sql_text = text("SELECT plano_nome, COUNT(contratos.plano_id) AS assinantes_por_plano, ROUND(SUM(valor_pago),2)"
+    " AS receita_total_por_plano FROM contratos INNER JOIN planos ON contratos.plano_id = planos.plano_id right join pagamentos"
     " on contratos.contrato_id = pagamentos.contrato_id WHERE status_contrato = 1 GROUP BY contratos.plano_id, planos.plano_nome")
     lista_assinantes = conn.execute(sql_text).fetchall()    
     conn.close()
@@ -147,9 +116,6 @@ def form_avalia():
     email = request.form.get("email")
     conn = engine.connect()
     data = datetime.today().strftime('%Y-%m-%d %H:%M:%S')
-    print(nota,filme,email,data)
-    # print(nota,filme,email,data,titulo_id,id_usuario,lista_email)
-    
     lista_email = [email[0] for email in conn.execute('select email_usuario from usuarios').fetchall()]
     print(lista_email)
     if email in lista_email:
