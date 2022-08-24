@@ -14,4 +14,4 @@ Alterar a string de conexão na linha 34 do arquivo app.py, colocando o login pa
 db_url = "mssql+pymssql://sa:joao1234@localhost:1433/dbMaryflix" <br>
 
 Para executar a aplicação executar o seguinte comando no cmd: <br>
-python -m flask run python -m flask run <br>
+python -m flask run python <br>
