@@ -2,7 +2,7 @@
 
 Aplicação em flask que realiza consulta e cadastros em um banco de dados.<br>
 Executar  o arquivo CreateDB.sql para criar um banco de dados para teste.<br>
-Criar um ambiente virtual abrid cmd e executar os comandos na pasta do projeto:<br>
+Criar um ambiente virtual: No cmd executar os comandos na pasta do projeto:<br>
 py -3 -m venv .venv <br>
 .venv\scripts\activate  <br>
 python -m pip install --upgrade pip <br>
